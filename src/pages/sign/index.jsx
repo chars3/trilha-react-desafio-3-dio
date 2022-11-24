@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { MdEmail, MdLock } from "react-icons/md";
+import { MdEmail, MdLock, MdPerson } from "react-icons/md";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
 import { Input } from "../../components/Input";
@@ -12,13 +12,14 @@ import {
   Column,
   TitleLogin,
   SubtitleLogin,
-  EsqueciText,
-  CriarText,
+  InfoText,
+  LoginText,
+  TextBtn,
   Row,
   Wrapper,
 } from "./styles";
 
-const Login = () => {
+const Sign = () => {
   const navigate = useNavigate();
 
   const {
@@ -61,29 +62,46 @@ const Login = () => {
         </Column>
         <Column>
           <Wrapper>
-            <TitleLogin>Faça seu cadastro</TitleLogin>
-            <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+            <TitleLogin>Comece agora grátis</TitleLogin>
+            <SubtitleLogin>Faça seu Cadastro e make the change._</SubtitleLogin>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Input
+                placeholder="Nome completo"
+                leftIcon={<MdPerson size={20} color="#8647AD" />}
+                name="person"
+                control={control}
+              />
+              {errors.person && <span>Nome é obrigatório</span>}
+              <Input
                 placeholder="E-mail"
-                leftIcon={<MdEmail />}
+                leftIcon={<MdEmail size={20} color="#8647AD" />}
                 name="email"
                 control={control}
               />
               {errors.email && <span>E-mail é obrigatório</span>}
               <Input
                 type="password"
-                placeholder="Senha"
-                leftIcon={<MdLock />}
+                placeholder="Password"
+                leftIcon={<MdLock size={20} color="#8647AD" />}
                 name="senha"
                 control={control}
               />
               {errors.senha && <span>Senha é obrigatório</span>}
-              <Button title="Entrar" variant="secondary" type="submit" />
+              <Button
+                title="Criar minha conta"
+                variant="secondary"
+                type="submit"
+              />
             </form>
             <Row>
-              <EsqueciText>Esqueci minha senha</EsqueciText>
-              <CriarText>Criar Conta</CriarText>
+              <InfoText>
+                Ao clicar em "criar minha conta grátis", declaro que aceito as
+                Políticas de Privacidade e os Termos de Uso da DIO.
+              </InfoText>
+            </Row>
+            <Row>
+              <LoginText>Já tenho conta.</LoginText>
+              <TextBtn>Fazer login </TextBtn>
             </Row>
           </Wrapper>
         </Column>
@@ -92,4 +110,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { Sign };
